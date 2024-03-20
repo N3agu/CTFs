@@ -1,0 +1,12 @@
+### CTF Name: include-this
+### Platform: CyberEDU
+
+### Description:
+Try harder!
+
+### Solution:
+After visiting the webpage, we encounter a button that redirects us to a specific URL (ip:port/file=test.txt) and displays the content of the file upon clicking. This behavior suggests a potential vulnerability such as Local File Inclusion (LFI).
+Testing the "file" parameter for LFI, we attempted to modify the parameter value to "flag.txt," which resulted in an error message. The error indicates that the current directory is /var/www/html/test.
+By modifying the parameter value to traverse 4 directories back and access "flag.txt," we successfully retrieved the flag.
+
+### Flag: CTF{LF1_L34DS_T0_RC3}
