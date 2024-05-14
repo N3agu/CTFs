@@ -24,7 +24,9 @@ I decided to run volatility to extract the lsa secrets using: `vol.py -f crashdu
 ## spy-agency
 After extracting the zip file, I obtained 'crashdump.elf.' From the description, I understood that I should search for an application within the crash dump, and that the flag format is ctf{sha256(location name from coordinates in lowercase)}.
 
-I decided to run a filescan through volatility using `vol.py -f spyagency3.bin windows.filescan.FileScan` and found an interesting file `0x3fefb8c0 \Users\volf\Desktop\app-release.apk.zip      216`. I used `vol.py -f spyagency3.bin windows.dumpfiles.DumpFiles --physaddr 0x3fefb8c0` to extract the zip file from the dump.
+I decided to run a filescan through volatility using `vol.py -f spyagency3.bin windows.filescan.FileScan` and found an interesting file called "app-release.apk.zip" at offset `0x3fefb8c0`.
+
+I used `vol.py -f spyagency3.bin windows.dumpfiles.DumpFiles --physaddr 0x3fefb8c0` to extract the zip file from the dump.
 
 After that, I've unzipped the archive and managed to find `app-release.apk/app-release/res/drawable/coordinates_can_be_found_here.jpg`. Used  `exiftool coordinates_can_be_found_here.jpg` and got the coordinates: "-coordinates=44.44672703736637, 26.098652847616506"
 
