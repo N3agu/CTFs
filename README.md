@@ -3,7 +3,7 @@ Solutions for CyberEDU and Unbreakable CTFs.
 
 ## CTFs
 - [include-this (WEB)](https://github.com/N3agu/CTF-Writeups#include-this-web)
-- [this-file-hides-something (Forensics)](https://github.com/N3agu/CTF-Writeups#) 
+- [this-file-hides-something (Forensics)](https://github.com/N3agu/CTF-Writeups#this-file-hides-something-forensics) 
 
 ## include-this (WEB)
 After visiting the webpage, I encounter a button that redirects me to a specific URL (ip:port/file=test.txt) and displays the content of the file upon clicking. This behavior suggests a potential vulnerability such as Local File Inclusion (LFI).
