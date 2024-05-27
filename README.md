@@ -22,7 +22,7 @@ After extracting the zip file, I obtained 'crashdump.elf.' From the description,
 
 I decided to run volatility to extract the lsa secrets using: `vol.py -f crashdump.elf windows.lsadump.Lsadump` and got the flag: "DefaultPassword: Str0ngAsAR0ck!"
 
-## spy-agency
+## spy-agency (Forensics)
 After extracting the zip file, I obtained 'crashdump.elf.' From the description, I understood that I should search for an application within the crash dump, and that the flag format is ctf{sha256(location name from coordinates in lowercase)}.
 
 I decided to run a filescan through volatility using `vol.py -f spyagency3.bin windows.filescan.FileScan` and found an interesting file called "app-release.apk.zip" at offset `0x3fefb8c0`.
@@ -33,7 +33,7 @@ After that, I've unzipped the archive and managed to find `app-release.apk/app-r
 
 Pasting the coordinates on [google maps](https://www.google.com/maps/place/44%C2%B026'48.2%22N+26%C2%B005'55.2%22E/@44.4467332,26.0983283,20z/data=!4m4!3m3!8m2!3d44.446727!4d26.0986528?entry=ttu) we get the location, which is "Pizza Hut". The flag is ctf{sha256(pizzahut)} | ctf{a939311a5c5be93e7a93d907ac4c22adb23ce45c39b8bfe2a26fb0d493521c4f}
 
-## linux-recovery
+## linux-recovery (MISC)
 The challenge contains two files: a UPX-packed executable called "chess" and a password-protected .rar archive. Running the "chess" executable launches a tic-tac-toe game in our terminal. We can win the game by playing in the following positions: 1, 8, 3, 5, 2. Upon winning, the application responds with `Congrats, the secret message is 347774197377. Please read this note: VIC, you should like straddles and checkerboards: KCSLQMYOPHTZUBVAFJXGERIWDNSS 3 7`. Based on the name, I thought about the [VIC cipher](https://www.dcode.fr/vic-cipher). Using the cipher "347774197377," the alphabet "KCSLQMYOPHTZUBVAFJXGERIWDNSS," and 3 & 7 for the spare positions, I obtained the password "unicorn".
 
 Entering "unicorn" as the secret message returns "$sdfg3e4", which is the password for the .rar archive. After using this password to extract the .rar archive, we get "logs.txt". Running strings `logs.txt | grep -i "ctf"` gives us: CTF{socskc-343fs-fefewvsw}.
