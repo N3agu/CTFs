@@ -11,17 +11,20 @@ Solutions for CyberEDU, Unbreakable and ROCSC CTFs.
 
 ## include-this (Web)
 After visiting the webpage, I encounter a button that redirects me to a specific URL (ip:port/file=test.txt) and displays the content of the file upon clicking. This behavior suggests a potential vulnerability such as Local File Inclusion (LFI).
+
 ![image1](https://raw.githubusercontent.com/N3agu/CTF-Writeups/main/images/include-this1.png)
 
 Testing the "file" parameter for LFI, I attempted to modify the parameter value to "flag.txt," which resulted in an error message. The error indicates that the current directory is /var/www/html/test.
+
 ![image2](https://raw.githubusercontent.com/N3agu/CTF-Writeups/main/images/include-this2.png)
 
 By adjusting the parameter value to traverse four directories up and access "flag.txt," I successfully retrieved the flag.
+
 ![image3](https://raw.githubusercontent.com/N3agu/CTF-Writeups/main/images/include-this3.png)
 
 ## rubies (Web)
 After starting the service, I decoded the page name from base64, revealing "rails." I saw a large Ruby logo in the middle of the page. After looking up the terms on Google, I found that Ruby on Rails is a server-side web application framework written in Ruby. The image had a link (href attribute) that redirected to /vuln. I found information about a possible vulnerability [CVE-2019-5418](https://nvd.nist.gov/vuln/detail/CVE-2019-5418) ([POC](https://github.com/mpgn/CVE-2019-5418)) online and started testing.
-![image3](https://raw.githubusercontent.com/N3agu/CTF-Writeups/main/images/rubies.png)
+![image4](https://raw.githubusercontent.com/N3agu/CTF-Writeups/main/images/rubies.png)
 
 The flag was located in /home/gem/flag.txt: CTF{c5547baa6ce135850b3a728d442925f1ae63f2bf22301676282958a0ce5fae59}.
 
