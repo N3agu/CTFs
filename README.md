@@ -24,7 +24,8 @@ By adjusting the parameter value to traverse four directories up and access "fla
 
 ## rubies (Web)
 After starting the service, I decoded the page name from base64, revealing "rails." I saw a large Ruby logo in the middle of the page. After looking up the terms on Google, I found that Ruby on Rails is a server-side web application framework written in Ruby. The image had a link (href attribute) that redirected to /vuln. I found information about a possible vulnerability [CVE-2019-5418](https://nvd.nist.gov/vuln/detail/CVE-2019-5418) ([POC](https://github.com/mpgn/CVE-2019-5418)) online and started testing.
-![image4](https://raw.githubusercontent.com/N3agu/CTF-Writeups/main/images/rubies.png)
+
+![image4](https://raw.githubusercontent.com/N3agu/CTFs/main/images/rubies.png)
 
 The flag was located in /home/gem/flag.txt: CTF{c5547baa6ce135850b3a728d442925f1ae63f2bf22301676282958a0ce5fae59}.
 
