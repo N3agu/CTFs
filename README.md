@@ -35,7 +35,7 @@ The flag was located in /home/gem/flag.txt: CTF{c5547baa6ce135850b3a728d442925f1
 
 ## dumb-discord (Web)
 Platform: **Cyber-Edu**<br>
-After downloading "server.cpython-36.pyc", I used uncompyle6 to decompile it into Python code. I saw that the function obfuscate was XORing the bytes it received as a parameter with the key "ctf{tryharderdontstring}", so I used the exact same function to decrypt all the strings.
+After downloading "server.cpython-36.pyc", I used uncompyle6 to decompile it into Python code. I saw that the function called "obfuscate" was XORing the bytes it received as a parameter with the key "ctf{tryharderdontstring}", so I used the exact same function to decrypt all the strings.
 
 ```py
 from discord.ext import commands
