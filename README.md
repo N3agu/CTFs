@@ -4,6 +4,7 @@ Documenting challenges and solutions from various Capture The Flag competitions.
 ## Challenges
 - [include-this (WEB)](https://github.com/N3agu/CTF-Writeups#include-this-web)
 - [rubies (WEB)](https://github.com/N3agu/CTF-Writeups#rubies-web)
+- [dumb-discord (WEB)](https://github.com/N3agu/CTF-Writeups#dumb-discord-web)
 - [this-file-hides-something (FORENSICS)](https://github.com/N3agu/CTF-Writeups#this-file-hides-something-forensics)
 - [spy-agency (FORENSICS)](https://github.com/N3agu/CTF-Writeups#spy-agency-forensics)
 - [linux-recovery (MISC)](https://github.com/N3agu/CTF-Writeups#linux-recovery-misc)
@@ -31,6 +32,66 @@ After starting the service, I decoded the page name from base64, revealing "rail
 ![image4](https://raw.githubusercontent.com/N3agu/CTFs/main/images/rubies.png)
 
 The flag was located in /home/gem/flag.txt: CTF{c5547baa6ce135850b3a728d442925f1ae63f2bf22301676282958a0ce5fae59}.
+
+## dumb-discord (Web)
+Platform: **Cyber-Edu**<br>
+After downloading "server.cpython-36.pyc", I used uncompyle6 to decompile it into Python code. I saw that the function obfuscate was XORing the bytes it received as a parameter with the key "ctf{tryharderdontstring}", so I used the exact same function to decrypt all the strings.
+
+```py
+from discord.ext import commands
+import discord, json
+from discord.utils import get
+
+def obfuscate(byt):
+    mask = b'ctf{tryharderdontstring}'
+    lmask = len(mask)
+    return bytes(c ^ mask[i % lmask] for i, c in enumerate(byt))
+
+def test(s):
+    data = obfuscate(s.encode())
+    return data
+
+intents = discord.Intents.default()
+intents.members = True
+cfg = open("config.json", "r")
+tmpconfig = cfg.read()
+cfg.close()
+config = json.loads(tmpconfig)
+token = config["token"]
+client = commands.Bot(command_prefix="/")
+
+@client.event
+async def on_ready():
+    print("Connected to bot: {}".format(client.user.name))
+    print("Bot ID: {}".format(client.user.id))
+
+
+@client.command()
+async def getflag(ctx):
+    await ctx.send("pong")
+
+
+@client.event
+async def on_message(message):
+    await client.process_commands(message)
+    if "!ping" in message.content.lower():
+        await message.channel.send("pong")
+    if "/getflag" in message.content.lower():
+        if message.author.id == 783473293554352141:
+            role = discord.utils.get((message.author.guild.roles), name=("dctf2020.cyberedu.ro"))
+            member = discord.utils.get((message.author.guild.members), id=(message.author.id))
+            if role in member.roles:
+                await message.channel.send(test(config["flag"]))
+    if "/help" in message.content.lower():
+        await message.channel.send("Try harder!")
+    if "/s基ay" in message.content.lower():
+        await message.channel.send(message.content.replace("/s基ay", "").replace("/getflag", ""))
+
+
+client.run(token)
+```
+
+I found the bot ID, so I used this [link](https://discord.com/api/oauth2/authorize?client_id=783473293554352141&permissions=0&scope=bot%20applications.commands) to invite it to my server. Then, I created the role "dctf2020.cyberedu.ro" that the bot checked for. I played around with the commands and discovered that using "@DCTFTargetWhyNot /s基ay /getFlag" doesn't get filtered and gives you back ```b'\x00\x00\x00\x00E\x10A\x0e\x00E\x02VA\x00\x0eXC\x17\x12\x17\x0b_\x03H\x05C_CAB\x1d\x0b\x07CWSAT\r[AEG\x17PVRKU\x16\x00L\x16EOZYC\x00QB]\x0bYFK\x17D\x14'```. After using the same function on the encrypted text, it gave me the flag: ctf{1b8fa7f33da67dfeb1d5f79850dcf13630b5563e98566bf7b76281d409d728c6}.
 
 ## this-file-hides-something (Forensics)
 Platform: **Cyber-Edu**<br>
