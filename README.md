@@ -160,6 +160,6 @@ print(f"Flag: {flag}")
 
 ## tsunami-researcher (Steg)
 Platform: **Cyber-Edu**<br>
-I opened the file in Audacity and switched the view mode to Spectrogram. After adjusting the window size to get a clearer view, I was able to read the hidden message "Secret Code: Spectogram." The flag turned out to be CTF{sha256(spectrogram)} | CTF{cc3a329919391e291f0a41b7afd3877546f70813f0c06a8454912e0a92099369}.
+I opened the file in Audacity and switched the view mode to Spectrogram. After adjusting the window size to get a clearer view, I was able to read the hidden message "Secret Code: Spectrogram." The flag turned out to be CTF{sha256(spectrogram)} | CTF{cc3a329919391e291f0a41b7afd3877546f70813f0c06a8454912e0a92099369}.
 
 <img src="https://raw.githubusercontent.com/N3agu/CTFs/main/images/tsunami-researcher.png" width="500" height="381">
