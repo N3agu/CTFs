@@ -2,28 +2,29 @@
 Documenting challenges and solutions from various Capture The Flag competitions.
 
 ## Challenges
-- [include-this (WEB)](https://github.com/N3agu/CTF-Writeups#include-this-web)
-- [rubies (WEB)](https://github.com/N3agu/CTF-Writeups#rubies-web)
-- [dumb-discord (WEB)](https://github.com/N3agu/CTF-Writeups#dumb-discord-web)
-- [this-file-hides-something (FORENSICS)](https://github.com/N3agu/CTF-Writeups#this-file-hides-something-forensics)
-- [spy-agency (FORENSICS)](https://github.com/N3agu/CTF-Writeups#spy-agency-forensics)
-- [linux-recovery (MISC)](https://github.com/N3agu/CTF-Writeups#linux-recovery-misc)
-- [access-vip-only (FORENSICS)](https://github.com/N3agu/CTF-Writeups#access-vip-only-forensics)
-- [unconditional (REVERSE)](https://github.com/N3agu/CTF-Writeups#unconditional-reverse)
+- [include-this (WEB)](https://github.com/N3agu/CTFs#include-this-web)
+- [rubies (WEB)](https://github.com/N3agu/CTFs#rubies-web)
+- [dumb-discord (WEB)](https://github.com/N3agu/CTFs#dumb-discord-web)
+- [this-file-hides-something (FORENSICS)](https://github.com/N3agu/CTFs#this-file-hides-something-forensics)
+- [spy-agency (FORENSICS)](https://github.com/N3agu/CTFs#spy-agency-forensics)
+- [linux-recovery (MISC)](https://github.com/N3agu/CTFs#linux-recovery-misc)
+- [access-vip-only (FORENSICS)](https://github.com/N3agu/CTFs#access-vip-only-forensics)
+- [unconditional (REVERSE)](https://github.com/N3agu/CTFs#unconditional-reverse)
+- [cross-or-zero (MISC)](https://github.com/N3agu/CTFs#cross-or-zero-misc)
 
 ## include-this (Web)
 Platform: **Cyber-Edu**<br>
 After visiting the webpage, I encounter a button that redirects me to a specific URL (ip:port/file=test.txt) and displays the content of the file upon clicking. This behavior suggests a potential vulnerability such as Local File Inclusion (LFI).
 
-![image1](https://raw.githubusercontent.com/N3agu/CTF-Writeups/main/images/include-this1.png)
+![image1](https://raw.githubusercontent.com/N3agu/CTFs/main/images/include-this1.png)
 
 Testing the "file" parameter for LFI, I attempted to modify the parameter value to "flag.txt," which resulted in an error message. The error indicates that the current directory is /var/www/html/test.
 
-![image2](https://raw.githubusercontent.com/N3agu/CTF-Writeups/main/images/include-this2.png)
+![image2](https://raw.githubusercontent.com/N3agu/CTFs/main/images/include-this2.png)
 
 By adjusting the parameter value to traverse four directories up and access "flag.txt," I successfully retrieved the flag.
 
-![image3](https://raw.githubusercontent.com/N3agu/CTF-Writeups/main/images/include-this3.png)
+![image3](https://raw.githubusercontent.com/N3agu/CTFs/main/images/include-this3.png)
 
 ## rubies (Web)
 Platform: **ROCSC**<br>
@@ -133,3 +134,25 @@ if ((*argv)[28] == 114 && v9[10] + v9[20] == 156 && v9[36] + v9[7] == 142 && v9[
   }
 ```
 Reversing the operations gives you: CTF{You-know-you-got-me-after-you-sha256-me}, and the flag is CTF{e60100e9b047ca672947fdae0f114b3b052d33955c81b6df767843a4ffde439e}.
+
+## cross-or-zero (Misc)
+Platform: **Cyber-Edu**<br>
+I wrote a script to reverse the encryption process and began guessing the key based on the hint ("It is not an encryption. It is ZERO."). Through trial and error, I discovered that the key was "0000".
+```py
+import base64
+
+def string_xor(s, key):
+    # Repeat the key to match the length of s
+    key = (key * (len(s) // len(key) + 1))[:len(s)]
+    return ''.join(chr(ord(x) ^ ord(y)) for (x, y) in zip(s, key))
+
+encrypted_flag = "dHNkdktTAVUHAABUA1VWVgIHBAlSBAFTBAMFUwECAgcAAAFWAFUFCFMACFFUAwQAVgBSBwQJBVZTAFYGCQYHVQABB1IJTQ=="
+decoded_bytes = base64.b64decode(encrypted_flag)
+
+decoded_string = decoded_bytes.decode('latin1')
+
+key_guess = "0000" # Guess
+flag = string_xor(decoded_string, key_guess)
+
+print(f"Flag: {flag}")
+```
