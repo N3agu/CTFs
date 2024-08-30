@@ -11,6 +11,7 @@ Documenting challenges and solutions from various Capture The Flag competitions.
 - [access-vip-only (FORENSICS)](https://github.com/N3agu/CTFs#access-vip-only-forensics)
 - [unconditional (REVERSE)](https://github.com/N3agu/CTFs#unconditional-reverse)
 - [cross-or-zero (MISC)](https://github.com/N3agu/CTFs#cross-or-zero-misc)
+- [tsunami-researcher (STEG)](https://github.com/N3agu/CTFs#tsunami-reseacher-steg)
 
 ## include-this (Web)
 Platform: **Cyber-Edu**<br>
@@ -156,3 +157,8 @@ flag = string_xor(decoded_string, key_guess)
 
 print(f"Flag: {flag}")
 ```
+
+## tsunami-researcher (Steg)
+Platform: **Cyber-Edu**<br>
+I opened the file in Audacity and switched the view mode to Spectrogram. After adjusting the window size to get a clearer view, I was able to read the hidden message "Secret Code: Spectogram." The flag turned out to be CTF{sha256(spectrogram)}.
+![image5](https://raw.githubusercontent.com/N3agu/CTFs/main/images/tsunami-researcher.png)
