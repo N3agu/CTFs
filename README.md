@@ -12,6 +12,7 @@ Documenting challenges and solutions from various Capture The Flag competitions.
 - [unconditional (REVERSE)](https://github.com/N3agu/CTFs#unconditional-reverse)
 - [cross-or-zero (MISC)](https://github.com/N3agu/CTFs#cross-or-zero-misc)
 - [tsunami-researcher (STEG)](https://github.com/N3agu/CTFs#tsunami-researcher-steg)
+- [alternating (FORENSICS)](https://github.com/N3agu/CTFs#alternating-forensics)
 
 ## include-this (Web)
 Platform: **Cyber-Edu**<br>
@@ -163,3 +164,8 @@ Platform: **Cyber-Edu**<br>
 I opened the file in Audacity and switched the view mode to Spectrogram. After adjusting the window size to get a clearer view, I was able to read the hidden message "Secret Code: Spectrogram." The flag turned out to be CTF{sha256(spectrogram)} | CTF{cc3a329919391e291f0a41b7afd3877546f70813f0c06a8454912e0a92099369}.
 
 <img src="https://raw.githubusercontent.com/N3agu/CTFs/main/images/tsunami-researcher.png" width="500" height="381">
+
+## alternating (Forensics)
+I extracted the file and noticed that the description said, 'Windows is your friend.' This led me to consider features specific to Windows. I inspected the NTFS file system and used the command ```dir /r``` to list ADS associated with the files.
+
+I then executed ```more < Flag.txt.txt:real_flag.txt:$DATA``` to access the hidden stream and retrieve the flag, which was ctf{7ce5567830a2f9f8ce8a7e39856adfe5208242f6bce01ca9af1a230637d65a2d}.
