@@ -13,6 +13,7 @@ Documenting challenges and solutions from various Capture The Flag competitions.
 - [cross-or-zero (MISC)](https://github.com/N3agu/CTFs#cross-or-zero-misc)
 - [tsunami-researcher (STEG)](https://github.com/N3agu/CTFs#tsunami-researcher-steg)
 - [alternating (FORENSICS)](https://github.com/N3agu/CTFs#alternating-forensics)
+- [solve-this (CRYPTO)](https://github.com/N3agu/CTFs#solve-this-crypto)
 
 ## include-this (Web)
 Platform: **Cyber-Edu**<br>
@@ -170,3 +171,21 @@ Platform: **Cyber-Edu**<br>
 I extracted the file and noticed that the description said, 'Windows is your friend.' This led me to consider features specific to Windows. I inspected the NTFS file system and used the command ```dir /r``` to list ADS associated with the files.
 
 I then executed ```more < Flag.txt.txt:real_flag.txt:$DATA``` to access the hidden stream and retrieve the flag, which was ctf{7ce5567830a2f9f8ce8a7e39856adfe5208242f6bce01ca9af1a230637d65a2d}.
+
+## solve-this (Crypto)
+Platform: **ROCSC**<br>
+I used CoCalc to decrypt the message. The Sage code used to solve the problem:
+```
+n = 3542351939701992275231003142553
+a = 126512569275071152686821540801
+b = 3415839370426921122544181601752
+
+E = EllipticCurve(GF(n), [a, b])
+P = E(2631211060304008450389410782950, 1597897356677072100955051755088)
+Q = E(1249902752727911034264929949680, 3043929197938243211289309561776)
+
+x = Q.log(P)
+
+print(f"x: {x}")
+```
+I found that x was 588581747331 and submited the flag: flag{sha256(588581747331)} | flag{b2a3253556aeb3bb0f1782c083e90b6de968688d3f435863b82597e6f5efe4c0}
