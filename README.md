@@ -175,7 +175,7 @@ I then executed ```more < Flag.txt.txt:real_flag.txt:$DATA``` to access the hidd
 ## solve-this (Crypto)
 Platform: **ROCSC**<br>
 I used CoCalc to decrypt the message. The Sage code used to solve the problem:
-```
+```sage
 n = 3542351939701992275231003142553
 a = 126512569275071152686821540801
 b = 3415839370426921122544181601752
