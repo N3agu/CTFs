@@ -166,6 +166,7 @@ I opened the file in Audacity and switched the view mode to Spectrogram. After a
 <img src="https://raw.githubusercontent.com/N3agu/CTFs/main/images/tsunami-researcher.png" width="500" height="381">
 
 ## alternating (Forensics)
+Platform: **Cyber-Edu**<br>
 I extracted the file and noticed that the description said, 'Windows is your friend.' This led me to consider features specific to Windows. I inspected the NTFS file system and used the command ```dir /r``` to list ADS associated with the files.
 
 I then executed ```more < Flag.txt.txt:real_flag.txt:$DATA``` to access the hidden stream and retrieve the flag, which was ctf{7ce5567830a2f9f8ce8a7e39856adfe5208242f6bce01ca9af1a230637d65a2d}.
