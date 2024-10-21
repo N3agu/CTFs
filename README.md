@@ -119,7 +119,7 @@ Pasting the coordinates on [google maps](https://www.google.com/maps/place/44%C2
 Platform: **ROCSC**<br>
 The challenge contains two files: a UPX-packed executable called "chess" and a password-protected .rar archive. Running the "chess" executable launches a tic-tac-toe game in our terminal. We can win the game by playing in the following positions: 1, 8, 3, 5, 2. Upon winning, the application responds with `Congrats, the secret message is 347774197377. Please read this note: VIC, you should like straddles and checkerboards: KCSLQMYOPHTZUBVAFJXGERIWDNSS 3 7`. Based on the name, I thought about the [VIC cipher](https://www.dcode.fr/vic-cipher). Using the cipher "347774197377," the alphabet "KCSLQMYOPHTZUBVAFJXGERIWDNSS," and 3 & 7 for the spare positions, I obtained the password "unicorn".
 
-Entering "unicorn" as the secret message returns "$sdfg3e4", which is the password for the .rar archive. After using this password to extract the .rar archive, we get "logs.txt". Running strings `logs.txt | grep -i "ctf"` gives us: CTF{socskc-343fs-fefewvsw}.
+Entering "unicorn" as the secret message returns "$sdfg3e4", which is the password for the .rar archive. After using this password to extract the .rar archive, we get "logs.txt". Running `strings logs.txt | grep -i "ctf"` gives us: CTF{socskc-343fs-fefewvsw}.
 
 ## access-vip-only (Forensics)
 Platform: **Cyber-Edu/ROCSC**<br>
