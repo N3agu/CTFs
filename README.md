@@ -14,6 +14,7 @@ Documenting challenges and solutions from various Capture The Flag competitions.
 - [tsunami-researcher (STEG)](https://github.com/N3agu/CTFs#tsunami-researcher-steg)
 - [alternating (FORENSICS)](https://github.com/N3agu/CTFs#alternating-forensics)
 - [solve-this (CRYPTO)](https://github.com/N3agu/CTFs#solve-this-crypto)
+- [siem-logs (THREAT HUNTING)](https://github.com/N3agu/CTFs#siem-logs-threat-hunting)
 
 ## include-this (Web)
 Platform: **Cyber-Edu**<br>
@@ -189,3 +190,6 @@ x = Q.log(P)
 print(f"x: {x}")
 ```
 I found that x was 588581747331 and submited the flag: flag{sha256(588581747331)} | flag{b2a3253556aeb3bb0f1782c083e90b6de968688d3f435863b82597e6f5efe4c0}
+
+## siem-logs (Threat Hunting)
+I accessed Kibana and navigated to the "Discover" section. Following the challenge description, I changed the index pattern to siem-logs2*. Based on the second question, I searched for the keyword "student". This search revealed the following details: the IP address `103.53.43.239`, the malicious domain name `studentvisaconsultantsdelhi`, and the CMS used: `WordPress`.
